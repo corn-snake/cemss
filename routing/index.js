@@ -1,4 +1,4 @@
-import send from "./../lib/send.js";
+import { send } from "@oak/oak";
 import { Status } from "@oak/oak";
 import { Router } from "@oak/oak/router";
 
