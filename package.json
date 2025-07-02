@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@oak/commons": "npm:@jsr/oak__commons@^1.0.1",
+    "@oak/oak": "npm:@jsr/oak__oak@^17.1.4",
+    "@std/encoding": "npm:@jsr/std__encoding@^1.0.10",
+    "@std/media-types": "npm:@jsr/std__media-types@^1.1.0",
+    "@std/path": "npm:@jsr/std__path@^1.1.1"
+  }
+}

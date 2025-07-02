@@ -1,0 +1,16 @@
+#calendar {
+	position: relative;
+	right: 0;
+	max-width: 30vw;
+}
+#sheet_greg_days {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+#sheet_greg_days > div {
+	display: table-cell;
+	text-align: center;
+	width: 100%;
+	max-width: calc(30vw/7);
+	height: 2em;
+}

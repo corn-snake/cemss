@@ -1,0 +1,237 @@
+/* Estilos específicos para el panel de profesor */
+.professor-dashboard {
+  display: flex;
+  min-height: calc(100vh - 60px);
+  margin-top: 60px;
+}
+
+/* Panel izquierdo - Grupos */
+.groups-panel {
+  width: 250px;
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+}
+
+.groups-panel h3 {
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.group-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.group-card {
+  background-color: rgba(255,255,255,0.1);
+  padding: 15px;
+  border-radius: 6px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.group-card:hover {
+  background-color: rgba(255,255,255,0.2);
+  transform: translateX(5px);
+}
+
+.group-card h4 {
+  color: #3498db;
+  margin-bottom: 5px;
+}
+
+.group-card p {
+  font-size: 0.9rem;
+  color: #ecf0f1;
+}
+
+/* Panel central - Actividades */
+.activities-panel {
+  flex: 1;
+  padding: 30px;
+  background-color: #f9f9f9;
+}
+
+.welcome-banner {
+  background-color: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  margin-bottom: 30px;
+}
+
+.welcome-banner h2 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.welcome-banner h2 span {
+  color: #3498db;
+}
+
+.activities-section h3 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #3498db;
+}
+
+.activities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.activity-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-left: 4px solid #3498db;
+}
+
+.activity-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.activity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.activity-header h4 {
+  color: #2c3e50;
+  font-size: 1.1rem;
+}
+
+.due-date {
+  font-size: 0.8rem;
+  background-color: #ecf0f1;
+  padding: 3px 8px;
+  border-radius: 12px;
+  color: #7f8c8d;
+}
+
+.activity-card p {
+  color: #555;
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+}
+
+.activity-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.action-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.ver-entregas {
+  background-color: #3498db;
+  color: white;
+}
+
+.ver-entregas:hover {
+  background-color: #2980b9;
+}
+
+.editar {
+  background-color: #f1f1f1;
+  color: #333;
+}
+
+.editar:hover {
+  background-color: #ddd;
+}
+
+/* Panel derecho - Materias */
+.subjects-panel {
+  width: 250px;
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+}
+
+.subjects-panel h3 {
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.subject-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.subject-card {
+  background-color: rgba(255,255,255,0.1);
+  padding: 15px;
+  border-radius: 6px;
+  transition: all 0.3s;
+}
+
+.subject-card:hover {
+  background-color: rgba(255,255,255,0.2);
+}
+
+.subject-card h4 {
+  color: #3498db;
+  margin-bottom: 10px;
+}
+
+.subject-card p {
+  font-size: 0.9rem;
+  color: #ecf0f1;
+}
+
+/* Estilos para el botón de cerrar sesión */
+.logout-btn {
+  background-color: #e74c3c !important;
+}
+
+.logout-btn:hover {
+  background-color: #c0392b !important;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .professor-dashboard {
+    flex-direction: column;
+  }
+  
+  .groups-panel, .subjects-panel {
+    width: 100%;
+    order: 2;
+  }
+  
+  .activities-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .activities-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .nav-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
