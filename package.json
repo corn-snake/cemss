@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "dev": "npx deno run --allow-net --allow-read index.js"
+  },
   "dependencies": {
     "@attalliayoub/fs-access": "npm:@jsr/attalliayoub__fs-access@^0.1.0",
     "@oak/commons": "npm:@jsr/oak__commons@^1.0.1",
