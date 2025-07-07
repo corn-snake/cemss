@@ -3,6 +3,7 @@
 
 <head>
     <link type="text/css" rel="stylesheet" href="/styles/title" />
+    <link type="text/css" rel="stylesheet" href="/styles/panels" />
     <link type="text/css" rel="stylesheet" href="/styles/Maestros" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,7 @@
     <script>
         //fetch("/login/check/staff", {method: "POST", body:localStorage.getItem("tkn")}).then(e=>e.text()).then(t=>{if(t.length >0) { localStorage.removeItem("tkn");window.location.href="/";} });
         fetch(location.pathname, {method: "POST", body: localStorage.getItem("tkn")}).then(e=>e.text()).then(e=>document.getElementById("main").innerHTML = e);
-        const displayGroup = (gID)=>fetch(`/staff/g/${gID}`, {method: "POST", body: localStorage.getItem("tkn")}).then(e=>e.text());
+        const displayGroup = (gID)=>fetch(`/staff/g/${gID}`, {method: "POST", body: localStorage.getItem("tkn")}).then(e=>e.text()).then(t=>document.getElementById("disp").innerHTML = t);
     </script>
 </head>
 

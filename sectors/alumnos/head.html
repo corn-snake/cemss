@@ -3,12 +3,14 @@
 
 <head>
     <link type="text/css" rel="stylesheet" href="/styles/title" />
+    <link type="text/css" rel="stylesheet" href="/styles/panels" />
     <link type="text/css" rel="stylesheet" href="/styles/Alumnos" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CEMSS - Panel del Alumno</title>
     <script>
-        fetch("/staff", {method: "POST", body:localStorage.getItem("tkn")}).then(e=>e.text()).then(t=>{if(t.length >0) { localStorage.removeItem("tkn");window.location.href="/";} });
+        fetch("/alumnos", {method: "POST", body:localStorage.getItem("tkn")}).then(e=>e.text()).then(e => document.getElementById("main").innerHTML = e);
+        const displayGroup = (gID) => fetch(`/alumnos/g/${gID}`, { method: "POST", body: localStorage.getItem("tkn") }).then(e => e.text()).then(t => document.getElementById("disp").innerHTML = t);
     </script>
 </head>
 
