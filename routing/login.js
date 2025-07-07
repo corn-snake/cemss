@@ -2,9 +2,12 @@ import { Router, Status } from "@oak/oak";
 import check from "./check.js";
 import { validatePupil, validateStaff } from "../lib/sql.js";
 import { encodeToken } from "../lib/jwt.js";
+import { HTMLPath, render } from "../lib/compose.js";
 
 const logins = new Router()
   .use("/check", check.routes(), check.allowedMethods())
+  .get("/alumnos", async ctx=>ctx.response.body = render(await HTMLPath("login/head.html"), "Alumnos", await HTMLPath("login/tail.html")))
+  .get("/staff", async ctx => ctx.response.body = render(await HTMLPath("login/head.html"), "Maestros", await HTMLPath("login/tail.html")))
   .post("/staff", async ctx => {
     let dat = await ctx.request.body.json();
     if (!(Array.isArray(await dat)) || (await dat).length !== 2) {

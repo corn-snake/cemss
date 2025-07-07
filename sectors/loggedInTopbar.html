@@ -1,0 +1,18 @@
+<header>
+    <script>
+        function logOut() {
+            localStorage.removeItem("tkn");
+            location.href = "/";
+        }
+    </script>
+    <nav class="sticky-nav">
+        <div class="nav-container">
+            <div class="logo"><a href="/" class="overrideLink"><img src="/images/logo_white" class="logo-image"/><span class="logo-text">CE<span class="logo-highlight">MS</span>S</span></a></div>
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="window.location.pathname='/'">Inicio</button>
+                <button class="nav-btn" id="calificaciones-btn">Perfil</button>
+                <button class="nav-btn logout-btn" id="logout-btn">Cerrar Sesión</button>
+            </div>
+        </div>
+    </nav>
+</header>

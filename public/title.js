@@ -23,17 +23,6 @@ document.getElementById('login-form').addEventListener('submit', function(e) {
       window.location.href = 'index.html';
     }
   });
-// Función para cerrar sesión
-document.getElementById('logout-btn').addEventListener('click', function() {
-    if(confirm('¿Estás seguro que deseas cerrar tu sesión?')) {
-      // Aquí iría la lógica para cerrar sesión
-      // Por ejemplo:
-      // localStorage.removeItem('userToken');
-      // window.location.href = 'index.html';
-      alert('Sesión cerrada con éxito');
-      window.location.href = 'index.html';
-    }
-  });
   
   // Simulación de datos del alumno (en un caso real esto vendría de una API)
   document.addEventListener('DOMContentLoaded', function() {
