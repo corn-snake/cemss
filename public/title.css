@@ -728,6 +728,7 @@ main {
 }
 
 a.overrideLink, a.overrideLink :not(*) {
+  text-decoration: none;
   pointer-events: none;
   display: inherit;
   align-items: inherit;
