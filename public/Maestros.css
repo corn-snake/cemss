@@ -1,9 +1,4 @@
 /* Panel central - Actividades */
-.activities-panel {
-  flex: 1;
-  padding: 30px;
-  background-color: #f9f9f9;
-}
 
 .welcome-banner {
   background-color: white;
@@ -107,81 +102,131 @@
   background-color: #ddd;
 }
 
-/* Panel derecho - Materias */
-.subjects-panel {
-  width: 250px;
-  background-color: #2c3e50;
-  color: white;
+.adm-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.subject-adm {
+  background-color: white;
+  border-radius: 8px;
   padding: 20px;
-  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-left: 4px solid #3498db;
+}
+.subject-adm:first-of-type {
+  margin-top: 1em;
 }
 
-.subjects-panel h3 {
-  border-bottom: 2px solid #3498db;
-  padding-bottom: 10px;
-  margin-bottom: 20px;
+.adm-btn.new-alumnus, .adm-btn.all-terms, .adm-btn.extra {
+  background-color: transparent;
+  color: #f1f1f1;
+  border: 1px solid #f1f1f1;
+}
+.adm-btn.new-alumnus:hover, .adm-btn.all-terms:hover, .adm-btn.extra:hover {
+  background-color: #3498db;
+  color: #333;
 }
 
-.subject-list {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+.extra-adm {
+  margin-top: 5em;
+}
+.extra-adm .adm-btn {
+  font-size: x-small;
 }
 
-.subject-card {
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 15px;
-  border-radius: 6px;
-  transition: all 0.3s;
+#copyActivitiesToggle, label[for=copyActivitiesToggle] {
+  font-size: small;
+}
+#copyActivitiesToggle {
+  margin: 0 0.5rem 0 1.2rem;
 }
 
-.subject-card:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+#form-word-upload {
+    font-size: 1.25rem;
+    background-color: #c8dadf;
+    position: relative;
+    padding: 15vh 1.4rem;
 }
 
-.subject-card h4 {
-  color: #3498db;
-  margin-bottom: 10px;
+.box {
+    text-align: center;
 }
 
-.subject-card p {
-  font-size: 0.9rem;
-  color: #ecf0f1;
+.box__dragndrop,
+.box__uploading,
+.box__success,
+.box__error {
+  display: none;
+}
+.box__file {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.box__file + label {
+    max-width: 80%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
 }
 
-/* Estilos para el botón de cerrar sesión */
-.logout-btn {
-  background-color: #e74c3c !important;
+.box .upload-btn {
+    padding: 6px 15px;
+    background-color: var(--accent-color);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: bold;
+    font-size: 1.2rem;
+    white-space: nowrap;
+    min-height: 36px;
+    min-width: 36px;
+}
+.box .upload-btn:hover {
+    background-color: var(--primary-color);
 }
 
-.logout-btn:hover {
-  background-color: #c0392b !important;
+.box.has-advanced-upload {
+  background-color: white;
+  outline: 2px dashed black;
+  outline-offset: -10px;
 }
-
-/* Responsive */
-@media (max-width: 1200px) {
-  .professor-dashboard {
-    flex-direction: column;
-  }
-
-  .groups-panel,
-  .subjects-panel {
+.box.has-advanced-upload .box__icon {
     width: 100%;
-    order: 2;
-  }
-
-  .activities-grid {
-    grid-template-columns: 1fr 1fr;
-  }
+    height: 80px;
+    fill: #92b0b3;
+    display: block;
+    margin-bottom: 40px;
+}
+.box.has-advanced-upload .box__dragndrop {
+  display: inline;
+}
+.box.is-dragover {
+  background-color: grey;
+}
+.box.is-uploading .box__input {
+  visibility: none;
+}
+.box.is-uploading .box__uploading {
+  display: block;
+}
+.box.is-success .box__success {
+    display: block;
 }
 
-@media (max-width: 768px) {
-  .activities-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .nav-buttons {
-    flex-direction: column;
-    gap: 10px;
-  }
+#processed-listing {
+    white-space: pre;
+    white-space-collapse: preserve;
 }

@@ -6,6 +6,7 @@
     "@attalliayoub/fs-access": "npm:@jsr/attalliayoub__fs-access@^0.1.0",
     "@oak/commons": "npm:@jsr/oak__commons@^1.0.1",
     "@oak/oak": "npm:@jsr/oak__oak@^17.1.4",
-    "mysql2": "^2.3.3"
+    "mammoth": "^1.9.1",
+    "mysql2": "^3.14.2"
   }
 }

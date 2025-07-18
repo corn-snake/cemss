@@ -4,14 +4,22 @@
             localStorage.removeItem("tkn");
             location.href = "/";
         }
+        function turn() {
+            if (document.body.classList.contains("aside")){
+                document.body.classList.add("m");
+                return document.body.classList.remove("aside");
+            }
+            document.body.classList.remove("m");
+            return document.body.classList.add("aside");
+        }
     </script>
     <nav class="sticky-nav">
         <div class="nav-container">
-            <div class="logo"><a href="/" class="overrideLink"><img src="/images/logo_white" class="logo-image"/><span class="logo-text">CE<span class="logo-highlight">MS</span>S</span></a></div>
+            <div class="logo"><a href="/" class="overrideLink"><img src="/images/logo_white" class="logo-image"/><span class="logo-text">CEM<span class="logo-highlight">SS</span></span></a></div>
             <div class="nav-buttons">
                 <button class="nav-btn" onclick="window.location.pathname='/'">Inicio</button>
                 <button class="nav-btn" id="calificaciones-btn">Perfil</button>
-                <button class="nav-btn logout-btn" id="logout-btn" onclick="logOut()">Cerrar Sesión</button>
+                <button class="nav-btn redaction" id="logout-btn" onclick="logOut()">Cerrar Sesión</button>
             </div>
         </div>
     </nav>
