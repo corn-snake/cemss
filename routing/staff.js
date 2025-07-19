@@ -1,8 +1,7 @@
 import { Router } from "@oak/oak";
 import { FragmentPath, render } from "../lib/compose.js";
-import { getAllTemplates, getClassesForCopy, getGroupInfoAdmin, getGroupsFromTerm, getOpenTerms, getStaffFront, getTeachers, getTerms, tokenCorrect } from "../lib/sql.js";
+import { bookResult, getAllTemplates, getClassesForCopy, getGroupInfoAdmin, getGroupsFromTerm, getOpenTerms, getStaffFront, getTeachers, getTerms, tokenCorrect } from "../lib/sql.js";
 import { decodeToken } from "../lib/jwt.js";
-import mammoth from "mammoth";
 
 const staff = new Router()
     .get("/", async ctx =>ctx.response.body = render(await FragmentPath("staff/head.html"), await FragmentPath("loggedInTopbar.html"), await FragmentPath("tail.html")))
@@ -15,15 +14,16 @@ const staff = new Router()
     .post("/opT", async ctx => ctx.response.body = await getOpenTerms(await decodeToken(await ctx.request.body.text())))
     .post("/opG", async ctx => ctx.response.body = await getGroupsFromTerm(await decodeToken(await ctx.request.body.text())))
     .post("/p", async ctx => ctx.response.body = await getAllTemplates(await decodeToken(await ctx.request.body.text())))
-    .post("/parseWord", async ctx => {
+    .post("/word", async ctx => {
       const b = await ctx.request.body.formData();
       try {
         await tokenCorrect(await decodeToken(b.get("tkn")));
       } catch (e) {
         throw e;
       }
-      const m = await mammoth.convertToHtml({ buffer: await b.get("file").arrayBuffer() });
-      ctx.response.body = m.value;
+      const r = JSON.parse(b.get("read"));
+      bookResult(r);
+      ctx.response.body = "received?"
       // console.log(m.messages);
     });
 export default staff;

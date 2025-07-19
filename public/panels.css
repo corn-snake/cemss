@@ -183,6 +183,7 @@ body {
     top: 0;
     right: 0;
     max-width: 78vw;
+    overflow-x: hidden;
 }
 
 #disp section:not(:first-of-type) {

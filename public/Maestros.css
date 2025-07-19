@@ -226,7 +226,12 @@
     display: block;
 }
 
-#processed-listing {
-    white-space: pre;
-    white-space-collapse: preserve;
+#submub {
+    display: none;
+    pointer-events: none;
+}
+
+output {
+    overflow-x: scroll;
+    display: block;
 }
