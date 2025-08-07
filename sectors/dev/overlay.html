@@ -1,0 +1,42 @@
+<span id="devOverlay">
+    <button onclick="hotReload()">Reload script</button>
+    &emsp;
+    <button onclick="reloadClassList()">Reload class list</button>
+    &emsp;
+    <button onclick="dumpLS()">Dump Local Storage</button>
+</span>
+<script>
+    const hotReload = () => {
+        if(typeof hr === "undefined")
+            return console.info("No script set for reloading!");
+        const temphr = hr + "",
+            sp = document.querySelector(":has(> #hotreload)");
+        sp.removeChild(document.getElementById("hotreload"));
+        const s = document.createElement("script");
+        s.setAttribute("id", "hotreload");
+        s.setAttribute("src", temphr);
+        sp.appendChild(s);
+    };
+    const reloadClassList = () => fetch("/dev/classlistof", {method: "POST", body: `{"tkn": "${localStorage.getItem("tkn")}", "type": "${document.location.pathname.match(/(?<=\/).*(?=\/)?/i)[0]}"}`}).then(r=>r.text()).then(t=>document.querySelector(".groups-panel").innerHTML = t);
+    const dumpLS = ()=> {
+        for (let i = 0;i<localStorage.length;i+=1)
+            console.log(localStorage.key(i), ": ", localStorage.getItem(localStorage.key(i)));
+    };
+    if (document.location.pathname.match(/(?<=\/).*(?=\/)?/i)[0].toLowerCase() === "alumnos") {
+        let b = document.createElement("button");
+        b.addEventListener("click",resetProgress);
+        b.textContent = "Reset progress";
+        document.getElementById("devOverlay").append(" ", b);
+    }
+</script>
+<style>
+    #devOverlay {
+        display: block;
+        text-align: center;
+        position: fixed;
+        width: 100dvw;
+    }
+    #devOverlay ~ * {
+        top: 1.5em;
+    }
+</style>

@@ -1,6 +1,6 @@
 import { Router } from "@oak/oak";
 import { FragmentPath, render } from "../lib/compose.js";
-import { bookResult, getAllTemplates, getClassesForCopy, getGroupInfoAdmin, getGroupsFromTerm, getOpenTerms, getStaffFront, getTeachers, getTerms, tokenCorrect } from "../lib/sql.js";
+import { bookResult, getAllTemplates, getClassesForCopy, getGroupInfoAdmin, getGroupsFromTerm, getOpenTerms, getStaffFront, getTeachers, getTerms, checkAdmin } from "../lib/sql.js";
 import { decodeToken } from "../lib/jwt.js";
 
 const staff = new Router()
@@ -17,13 +17,13 @@ const staff = new Router()
     .post("/word", async ctx => {
       const b = await ctx.request.body.formData();
       try {
-        await tokenCorrect(await decodeToken(b.get("tkn")));
+        await checkAdmin(await decodeToken(b.get("tkn")));
       } catch (e) {
         throw e;
       }
       const r = JSON.parse(b.get("read"));
       bookResult(r);
-      ctx.response.body = "received?"
+      ctx.response.body = "received."
       // console.log(m.messages);
     });
 export default staff;

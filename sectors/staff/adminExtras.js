@@ -8,17 +8,8 @@ const parseBlockInfo = o => {
     units = [],
     mode = subst ? "replace" : "obsolete";
   let flag = false;
-  if (type[0].toUpperCase() === "CUADERNO") {
-    for (i of content) {
-      if (units.length < 1 && !(partQualif.test(i.textContent))) continue;
-      if (partQualif.test(i.textContent)){
-        units.push({number: parseInt(i.textContent.match(/[0-9]+/)[0]), questions: []})
-        continue;
-      }
-      if (i.nodeName == "H1") {
-      }
-    }
-    return {name, units, type, mode};
+  if (type[0].toUpperCase() !== "LIBRO") {
+    return new TypeError("El procesador de archivos solo puede leer libros!")
   }
   for (i of content) {
     if (units.length < 1 && !(partQualif.test(i.textContent))) continue;
@@ -56,16 +47,21 @@ const funnyShit = () => {
       output.innerHTML = html;
       const read = parseBlockInfo(output),
         fd = new FormData();
+      if (read instanceof TypeError) {
+        alert(read.message);
+        form.classList.remove("is-uploading");
+        form.classList.add("is-error");
+        throw read;
+      }
       fd.append("read", JSON.stringify(read));
       fd.append("tkn", localStorage.getItem("tkn"));
-      fetch("/staff/word", { method: "POST", body: fd }).then(r=>r.text()).then(t=>document.getElementById("processed-listing").innerHTML = t);
+      fetch("/staff/word", { method: "POST", body: fd }).then(r=>r.text()).then(t=>{
+        form.classList.remove("is-uploading");
+        form.classList.add("is-success")
+      });
     },
     mammothise = async () =>
-      mammoth.convertToHtml({arrayBuffer: await input.files[0].arrayBuffer()}).then(r=>r.value).then(t=>{
-        out(t);
-        form.classList.remove("is-uploading");
-        form.classList.add("is-success");
-      }),
+      mammoth.convertToHtml({arrayBuffer: await input.files[0].arrayBuffer()}).then(r=>r.value).then(t=>out(t)),
     showFiles = (files) => {
       label.textContent = (files.length > 1 ? (input.getAttribute('data-multiple-caption') || '').replace( '{count}', files.length) : files[0].name);
     };

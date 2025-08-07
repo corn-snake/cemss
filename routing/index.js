@@ -4,6 +4,8 @@ import { Router } from "@oak/oak/router";
 import logins from "./login.js";
 import staff from "./staff.js";
 import alumnos from "./alumnos.js";
+import { dev } from "../lib/sql.js";
+import devRoutes from "./dev.js";
 
 const sender = (...exts) => exts.length > 0 ? (ctx, n) => {
   let rf;
@@ -23,11 +25,14 @@ const readScript = sender("js");
 const readImage = sender("png", "jpeg", "jpg", "ico", "bmp", "webp");
 
 const r = new Router()
-  .use("/login", logins.routes(), logins.allowedMethods())
+    .use("/login", logins.routes(), logins.allowedMethods())
 
-  .use("/staff", staff.routes(), staff.allowedMethods())
-  .use("/alumnos", alumnos.routes(), alumnos.allowedMethods())
+    .use("/staff", staff.routes(), staff.allowedMethods())
+    .use("/alumnos", alumnos.routes(), alumnos.allowedMethods());
 
+if (dev) r.use("/dev", devRoutes.routes(), devRoutes.allowedMethods());
+
+r
   .get("/styles/(.*)", ctx => readStyle(ctx, ctx.request.url.pathname.substring(ctx.request.url.pathname.indexOf("/", 3))))
   .get("/scripts/(.*)", ctx => readScript(ctx, ctx.request.url.pathname.substring(ctx.request.url.pathname.indexOf("/", 3))))
   .get("/images/(.*)", ctx => readImage(ctx, ctx.request.url.pathname.substring(ctx.request.url.pathname.indexOf("/", 3))))
