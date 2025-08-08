@@ -184,6 +184,7 @@ body {
     right: 0;
     max-width: 78vw;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 #disp section:not(:first-of-type) {
@@ -313,6 +314,38 @@ progress {
     padding-bottom: 1em;
     border-bottom: 2px solid #3b82f6;
     margin-bottom: 1em;
+}
+
+#currentCard header {
+    border-bottom: 2px dotted #94ADD5;
+}
+
+#currentCard footer {
+    margin-top: 1em;
+    padding-top: 1em;
+    border-top: 2px dotted #94ADD5;
+}
+
+#currentCard nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2em;
+}
+
+#currentCard nav a {
+    font-style: italic;
+}
+
+.forwardlink, .backlink {
+    text-decoration: green wavy underline;
+}
+
+.forwardlink:not(:empty)::after {
+    content: " →";
+}
+
+.backlink:not(:empty)::before {
+    content: "← ";
 }
 
 /* Responsive */

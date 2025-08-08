@@ -31,3 +31,5 @@ window.displayClass = (name) => fetch("/alumnos/clase", {method: "POST", body: `
     document.getElementById("disp").classList.add("init");
     document.getElementById("classwrap").innerHTML = r.render;
 });
+
+window.displayActivity = (template, block, number) => fetch("/alumnos/act", { method: "POST", body: `{"tkn":"${localStorage.getItem("tkn")}", "plantilla": "${template}", "tema": ${block}, "material": ${number}}` }).then(r => r.text()).then(t => document.getElementById("currentCard").innerHTML = t).then(document.getElementById("materia-actual").scrollIntoView());

@@ -1,6 +1,6 @@
 import { Router } from "@oak/oak";
 import { FragmentPath, render } from "../lib/compose.js";
-import { commitProgress, getClassInfo, getPupilFront, getPupilProgress } from "../lib/sql.js";
+import { commitProgress, getActivity, getClassInfo, getPupilFront, getPupilProgress } from "../lib/sql.js";
 import { decodeToken } from "../lib/jwt.js";
 import { isDev } from "../.env/dev.js";
 
@@ -14,6 +14,10 @@ const alumnos = new Router()
     .post("/clase", async ctx => {
         const { tkn, plantilla, tema, material } = await ctx.request.body.json();
         ctx.response.body = await getClassInfo(await decodeToken(tkn), plantilla, tema, material);
+    })
+    .post("/act", async ctx => {
+        const { tkn, plantilla, tema, material } = await ctx.request.body.json();
+        ctx.response.body = await getActivity(await decodeToken(tkn), plantilla, tema, material);
     })
     .post("/progreso", async ctx => ctx.response.body = await getPupilProgress(await decodeToken(await ctx.request.body.text())))
     .put("/commitProgreso", async ctx=>{
