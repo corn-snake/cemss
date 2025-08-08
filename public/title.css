@@ -101,7 +101,7 @@ body {
   background-color: var(--accent-color);
 }
 
-main {
+#disp {
   height: 86vh;
   margin-top: 14vh;
   position: absolute;

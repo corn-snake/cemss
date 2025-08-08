@@ -27,4 +27,7 @@ window.resetProgress = () => {
     });
 };
 
-window.displayClass = (name) => fetch("/alumnos/clase", {method: "POST", body: `{"tkn": "${localStorage.getItem("tkn")}", "plantilla": "${name}", "tema": ${getProgress(name).tema}}`});
+window.displayClass = (name) => fetch("/alumnos/clase", {method: "POST", body: `{"tkn": "${localStorage.getItem("tkn")}", "plantilla": "${name}", "tema": ${getProgress(name).tema}, "material": ${getProgress(name).material}}`}).then(r=>r.json()).then(r=>{
+    document.getElementById("disp").classList.add("init");
+    document.getElementById("classwrap").innerHTML = r.render;
+});

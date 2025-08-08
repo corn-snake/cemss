@@ -12,8 +12,8 @@ const alumnos = new Router()
     ))
     .post("/", async ctx => ctx.response.body = await getPupilFront(await decodeToken(await ctx.request.body.text())))
     .post("/clase", async ctx => {
-        const { tkn, plantilla, tema } = await ctx.request.body.json();
-        ctx.response.body = await getClassInfo(await decodeToken(tkn), plantilla, tema);
+        const { tkn, plantilla, tema, material } = await ctx.request.body.json();
+        ctx.response.body = await getClassInfo(await decodeToken(tkn), plantilla, tema, material);
     })
     .post("/progreso", async ctx => ctx.response.body = await getPupilProgress(await decodeToken(await ctx.request.body.text())))
     .put("/commitProgreso", async ctx=>{

@@ -10,10 +10,8 @@
     <title>CEMSS - Panel del Alumno</title>
     <script>
         fetch("/alumnos", {method: "POST", body:localStorage.getItem("tkn")}).then(e=>e.text()).then(e => document.getElementById("main").innerHTML = e);
-        const displayGroup = (gID) => fetch(`/alumnos/g/${gID}`, { method: "POST", body: localStorage.getItem("tkn") }).then(e => e.text()).then(t => document.getElementById("disp").innerHTML = t);
-        const hr = "/scripts/alumnos";
     </script>
-    <script id="hotreload" src="/scripts/alumnos"></script>
+    <script src="/scripts/alumnos"></script>
 </head>
 
 <body>

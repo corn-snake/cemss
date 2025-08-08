@@ -2,9 +2,14 @@ import { Router } from "@oak/oak";
 import { FragmentPath, render } from "../lib/compose.js";
 import { bookResult, getAllTemplates, getClassesForCopy, getGroupInfoAdmin, getGroupsFromTerm, getOpenTerms, getStaffFront, getTeachers, getTerms, checkAdmin } from "../lib/sql.js";
 import { decodeToken } from "../lib/jwt.js";
+import { isDev } from "../.env/dev.js";
 
 const staff = new Router()
-    .get("/", async ctx =>ctx.response.body = render(await FragmentPath("staff/head.html"), await FragmentPath("loggedInTopbar.html"), await FragmentPath("tail.html")))
+    .get("/", async ctx =>ctx.response.body = render(
+        await FragmentPath("staff/head.html"),
+        isDev ? await FragmentPath("dev/overlay.html") : "",
+        await FragmentPath("loggedInTopbar.html"),
+        await FragmentPath("tail.html")))
     .post("/check", async ctx => ctx.response.body = await decodeToken(await ctx.request.body.text()) ? await FragmentPath("staff/adminExtras.js") : "")
     .post("/", async ctx => ctx.response.body = await getStaffFront(await decodeToken(await ctx.request.body.text())))
     .post("/g/:gID", async ctx => ctx.response.body = await getGroupInfoAdmin(await decodeToken(await ctx.request.body.text()), ctx.params.gID))

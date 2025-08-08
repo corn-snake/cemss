@@ -119,13 +119,13 @@ body {
     overflow: scroll;
 }
 
-.activities-panel {
+#disp.activities-panel {
   flex: 1;
   padding: 30px;
   background-color: #f9f9f9;
 }
 
-.activities-panel article:not(:first-of-type) {
+#disp.activities-panel article:not(:first-of-type) {
     margin-top: 1.2em;
 }
 
@@ -247,6 +247,72 @@ body {
 
 .redaction:hover {
   background-color: #c0392b;
+}
+
+.welcome-banner {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  background-image: linear-gradient(to right, #f0f9ff, #ffffff);
+  border-left: 4px solid #3b82f6;
+}
+
+.welcome-banner h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.welcome-banner p {
+  margin: 0.5rem 0 0;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.smallabel {
+    font-size: 0.9rem;
+}
+
+progress {
+    vertical-align: middle;
+}
+
+.init .initmsg {
+    display: none;
+    pointer-events: none;
+}
+
+.group-card .classProgress {
+    width: 5em;
+}
+
+.class-display {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+#materia-actual {
+  color: #3b82f6;
+}
+
+.class-display main span {
+    display: block;
+}
+
+.class-display main span > * {
+    display: inline;
+}
+
+.class-display header {
+    text-align: center;
+    padding-bottom: 1em;
+    border-bottom: 2px solid #3b82f6;
+    margin-bottom: 1em;
 }
 
 /* Responsive */
