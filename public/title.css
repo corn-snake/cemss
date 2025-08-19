@@ -742,6 +742,16 @@ body {
   transform: translateY(-3px);
 }
 
+.question {
+    font-size: 1.35rem;
+}
+
+.question ~ {
+    margin-left: 0.3rem;
+    border-left: 2px solid #3498db;
+    padding-left: 0.4rem;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .about-us-content {

@@ -8,33 +8,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CEMSS - Panel del Profesor</title>
-    <script>
-        fetch(location.pathname, {method: "POST", body: localStorage.getItem("tkn")}).then(e=>e.text()).then(e=>document.getElementById("main").innerHTML = e);
-        const displayGroup = (gID)=>fetch(`/staff/g/${gID}`, {method: "POST", body: localStorage.getItem("tkn")}).then(e=>e.text()).then(t=>document.getElementById("disp").innerHTML = t);
-        const displayCreateClass = async()=>{
-            document.getElementById("classMaker").classList.remove("h");
-            document.getElementById("createClassTeacher").innerHTML = `\
-                    ${await fetch("/staff/m", {method: "POST", body: localStorage.getItem("tkn")}).then(e=>e.text())}
-                </select>
-            `;
-            fetch("/staff/opT",{method:"POST", body:localStorage.getItem("tkn")}).then(t=>t.text()).then(t=>document.getElementById("createClassTerm").innerHTML = t);
-            fetch("/staff/opG", { method: "POST", body: localStorage.getItem("tkn") }).then(t => t.text()).then(t => document.getElementById("createClassGroup").innerHTML = t);
-            document.getElementById("copyActivitiesToggle").addEventListener("change", (e)=>{
-                if (e.target.value){
-                    document.getElementById("copyClassWrap").classList.remove("h");
-                    fetch("/staff/cAllForCopy", {method: "POST", body: localStorage.getItem("tkn")}).then(e=>e.text()).then(t=> document.getElementById("createClassCopyFrom").innerHTML = t);
-                    return;
-                }
-                document.getElementById("copyClassWrap").classList.add("h");
-            })
-        };
-        fetch("/staff/check", {method: "POST", body:localStorage.getItem("tkn")}).then(e=>e.text()).then(t=>{if(t.length >0) {
-          const s = document.createElement("script");
-          s.textContent = t;
-          document.head.appendChild(s);
-        } });
-        const createItem = ()=>{};
-    </script>
+    <script src="/scripts/panels"></script>
+    <script src="/scripts/maestros.js"></script>
 </head>
 
 <body>

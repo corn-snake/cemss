@@ -6,8 +6,8 @@ import { FragmentPath, render } from "../lib/compose.js";
 
 const logins = new Router()
   .use("/check", check.routes(), check.allowedMethods())
-  .get("/alumnos", async ctx=>ctx.response.body = render(await FragmentPath("login/head.html"), "Alumnos", await FragmentPath("login/tail.html")))
-  .get("/staff", async ctx => ctx.response.body = render(await FragmentPath("login/head.html"), "Maestros", await FragmentPath("login/tail.html")))
+  .get("/alumnos", async ctx=>ctx.response.body = render(await FragmentPath("login/head.html"), "Alumnos", await FragmentPath("login/alumnos_form.html"), await FragmentPath("login/tail.html")))
+  .get("/staff", async ctx => ctx.response.body = render(await FragmentPath("login/head.html"), "Maestros", await FragmentPath("login/staff_form.html"), await FragmentPath("login/tail.html")))
   .post("/staff", async ctx => {
     let dat = await ctx.request.body.json();
     if (!(Array.isArray(await dat)) || (await dat).length !== 2) {

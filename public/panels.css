@@ -90,6 +90,27 @@
     }
 }
 
+@keyframes shake {
+    0% {
+        margin-left: 0;
+    }
+	20% {
+        margin-left: 0.6vw;
+	}
+	40% {
+	    margin-left: -0.6vw;
+	}
+	60% {
+        margin-left: 0.6vw;
+	}
+	80% {
+	    margin-left: -0.6vw;
+	}
+	100% {
+        margin-left: 0;
+    }
+}
+
 body {
     max-height: 100dvh;
 }
@@ -127,6 +148,10 @@ body {
 
 #disp.activities-panel article:not(:first-of-type) {
     margin-top: 1.2em;
+}
+
+#disp.error {
+    margin-left: 0;
 }
 
 /* Panel izquierdo - Grupos */
@@ -329,15 +354,36 @@ progress {
 #currentCard nav {
     display: flex;
     justify-content: space-between;
-    padding: 0 2em;
 }
 
-#currentCard nav a {
+#currentCard footer nav a {
     font-style: italic;
+    font-size: 1.3rem;
+}
+
+#currentCard footer .forwardlink {
+    text-align: end;
+}
+
+#currentCard header nav {
+    margin-top: 0.3rem;
 }
 
 .forwardlink, .backlink {
     text-decoration: green wavy underline;
+}
+
+:not(:empty) + .separate {
+    border-left: 2px solid #94add5;
+    margin: 0 1.2em;
+}
+
+.separate.smaller {
+    border-left: none;
+}
+:not(:empty) + .separate.smaller::after {
+    content: "|";
+    color: #94add5;
 }
 
 .forwardlink:not(:empty)::after {
@@ -346,6 +392,68 @@ progress {
 
 .backlink:not(:empty)::before {
     content: "← ";
+}
+
+.two-column-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.question-description {
+    font-style: italic;
+}
+
+div.item {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.column-from .item span {
+    display: inline;
+}
+
+.column-to {
+    text-align: center;
+}
+
+.column-to li.item {
+    list-style: lower-latin;
+    list-style-position: inside;
+}
+
+.column-to li.item::marker {
+    color: #3b82f6;
+}
+
+.column-marker {
+    border-radius: 100%;
+    border: 1px solid black;
+    min-width: 1.4rem;
+    height: 1.4rem;
+    display: inline !important;
+}
+
+.shake {
+    color: red;
+    animation: shake 1.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.send {
+    margin-top: 2rem;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    background-color: #3498db;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1rem;
+    float: right;
+}
+
+.send:hover {
+  background-color: #2980b9;
 }
 
 /* Responsive */

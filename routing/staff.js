@@ -1,6 +1,6 @@
 import { Router } from "@oak/oak";
 import { FragmentPath, render } from "../lib/compose.js";
-import { bookResult, getAllTemplates, getClassesForCopy, getGroupInfoAdmin, getGroupsFromTerm, getOpenTerms, getStaffFront, getTeachers, getTerms, checkAdmin } from "../lib/sql.js";
+import { bookResult, getAllTemplates, getGroupInfoAdmin, getOpenTerms, getStaffFront, getTeachers, getTerms, checkAdmin, getImpartingInfo, getTemplatesForClass, assignClass } from "../lib/sql.js";
 import { decodeToken } from "../lib/jwt.js";
 import { isDev } from "../.env/dev.js";
 
@@ -12,13 +12,23 @@ const staff = new Router()
         await FragmentPath("tail.html")))
     .post("/check", async ctx => ctx.response.body = await decodeToken(await ctx.request.body.text()) ? await FragmentPath("staff/adminExtras.js") : "")
     .post("/", async ctx => ctx.response.body = await getStaffFront(await decodeToken(await ctx.request.body.text())))
+    .post("/c", async ctx => {
+        const { tkn, group, template } = await ctx.request.body.json();
+        ctx.response.body = await getImpartingInfo(await decodeToken(tkn), group, template);
+    })
     .post("/g/:gID", async ctx => ctx.response.body = await getGroupInfoAdmin(await decodeToken(await ctx.request.body.text()), ctx.params.gID))
     .post("/m", async ctx => ctx.response.body = await getTeachers(await decodeToken(await ctx.request.body.text())))
-    .post("/cAllForCopy", async ctx => ctx.response.body = await getClassesForCopy(await decodeToken(await ctx.request.body.text())))
+    .post("/cForNew", async ctx => {
+        const { tkn, grupo } = await ctx.request.body.json();
+        ctx.response.body = await getTemplatesForClass(await decodeToken(tkn), grupo);
+    })
     .post("/t", async ctx => ctx.response.body = await getTerms(await decodeToken(await ctx.request.body.text())))
     .post("/opT", async ctx => ctx.response.body = await getOpenTerms(await decodeToken(await ctx.request.body.text())))
-    .post("/opG", async ctx => ctx.response.body = await getGroupsFromTerm(await decodeToken(await ctx.request.body.text())))
     .post("/p", async ctx => ctx.response.body = await getAllTemplates(await decodeToken(await ctx.request.body.text())))
+    .post("/assign", async ctx => {
+        const { tkn, clase } = await ctx.request.body.json();
+        ctx.response.body = await assignClass( await decodeToken(tkn), clase );
+    })
     .post("/word", async ctx => {
       const b = await ctx.request.body.formData();
       try {
@@ -27,7 +37,7 @@ const staff = new Router()
         throw e;
       }
       const r = JSON.parse(b.get("read"));
-      bookResult(r);
+      bookResult(r, b.get("cuatrimestre"));
       ctx.response.body = "received."
       // console.log(m.messages);
     });

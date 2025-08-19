@@ -1,6 +1,6 @@
 import { Router } from "@oak/oak";
 import { FragmentPath, render } from "../lib/compose.js";
-import { commitProgress, getActivity, getClassInfo, getPupilFront, getPupilProgress } from "../lib/sql.js";
+import { commitProgress, getActivity, getClassInfo, getPupilFront, getPupilProgress, getUnitExam } from "../lib/sql.js";
 import { decodeToken } from "../lib/jwt.js";
 import { isDev } from "../.env/dev.js";
 
@@ -12,12 +12,16 @@ const alumnos = new Router()
     ))
     .post("/", async ctx => ctx.response.body = await getPupilFront(await decodeToken(await ctx.request.body.text())))
     .post("/clase", async ctx => {
-        const { tkn, plantilla, tema, material } = await ctx.request.body.json();
-        ctx.response.body = await getClassInfo(await decodeToken(tkn), plantilla, tema, material);
+        const { tkn, plantilla, material } = await ctx.request.body.json();
+        ctx.response.body = await getClassInfo(await decodeToken(tkn), plantilla, material);
     })
     .post("/act", async ctx => {
-        const { tkn, plantilla, tema, material } = await ctx.request.body.json();
-        ctx.response.body = await getActivity(await decodeToken(tkn), plantilla, tema, material);
+        const { tkn, plantilla, material } = await ctx.request.body.json();
+        ctx.response.body = await getActivity(await decodeToken(tkn), plantilla, material);
+    })
+    .post("/quiz", async ctx => {
+        const { tkn, plantilla, tema } = await ctx.request.body.json();
+        ctx.response.body = await getUnitExam(await decodeToken(tkn), plantilla, tema);
     })
     .post("/progreso", async ctx => ctx.response.body = await getPupilProgress(await decodeToken(await ctx.request.body.text())))
     .put("/commitProgreso", async ctx=>{

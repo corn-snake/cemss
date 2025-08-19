@@ -161,6 +161,6 @@
   transition: background-color 0.3s;
 }
 
-.actividad-btn:hover {
-  background-color: #2980b9;
+.question {
+    margin-top: 1rem;
 }

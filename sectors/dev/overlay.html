@@ -67,6 +67,12 @@
         b.textContent = "Reset progress";
         document.getElementById("devOverlay").append(" ", b);
     }
+    if (document.location.pathname.match(/(?<=\/).*(?=\/)?/i)[0].toLowerCase() === "staff") {
+        let b = document.createElement("button");
+        b.addEventListener("click",()=>extraScripts(Date.now()));
+        b.textContent = "Reload adminscript";
+        document.getElementById("devOverlay").append(" ", b);
+    }
 </script>
 <style>
     #devOverlay {
