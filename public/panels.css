@@ -306,7 +306,7 @@ progress {
     vertical-align: middle;
 }
 
-.init .initmsg {
+.initmsg:has(+:not(:empty)) {
     display: none;
     pointer-events: none;
 }
@@ -340,6 +340,45 @@ progress {
     border-bottom: 2px solid #3b82f6;
     margin-bottom: 1em;
 }
+
+.class-display:has(table) {
+    overflow: scroll;
+}
+
+#disp .class-display:has(table) header {
+    margin-bottom: 0;
+}
+
+.marks {
+    border-spacing: 5px;
+    border-collapse: collapse;
+}
+
+.marks th {
+    max-width: 10em;
+}
+
+.marks :is(th,td) {
+    padding: 0.5rem 0.5rem;
+}
+
+.marks tr th:not(:last-child) {
+    border-right: 2px solid gray;
+}
+
+.marks tr td:not(:last-child) {
+    border-right: 2px solid black;
+}
+
+.marks td {
+    text-align: center;
+}
+
+.marks tbody tr {
+    border-top: 2px dotted darkgray;
+}
+
+
 
 #currentCard header {
     border-bottom: 2px dotted #94ADD5;
@@ -471,6 +510,28 @@ div.item {
     .activities-grid {
         grid-template-columns: 1fr 1fr;
     }
+}
+
+button.all-terms {
+    border-radius: 4px;
+    padding: 0.2rem 0.3rem;
+    background-color: transparent;
+    color: #f1f1f1;
+    border: 1px solid #f1f1f1;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button + .group-list {
+    margin-top: 0.8rem;
+}
+
+.fw {
+    width: 100%;
+}
+
+.all-terms:hover {
+    background-color: #3498db;
+    color: #333;
 }
 
 @media (max-width: 768px) {

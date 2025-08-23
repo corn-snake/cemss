@@ -17,10 +17,7 @@ window.resetProgress = () => fetch("/alumnos/progreso", {method: "POST", body:lo
     window.progreso = t;
 });
 
-window.displayClass = (name) => fetch("/alumnos/clase", {method: "POST", body: `{"tkn": "${localStorage.getItem("tkn")}", "plantilla": "${name}", "material": ${getProgress(name)}}`}).then(r=>r.text()).then(t=>{
-    document.getElementById("disp").classList.add("init");
-    document.getElementById("classwrap").innerHTML = t;
-});
+window.displayClass = (name) => fetch("/alumnos/clase", {method: "POST", body: `{"tkn": "${localStorage.getItem("tkn")}", "plantilla": "${name}", "material": ${getProgress(name)}}`}).then(r=>r.text()).then(t=>document.getElementById("classwrap").innerHTML = t);
 
 window.displayActivity = (template, number, add) => fetch("/alumnos/act", { method: "POST", body: `{"tkn":"${localStorage.getItem("tkn")}", "plantilla": "${template}", "material": ${number}}` }).then(r => r.text()).then(t => document.getElementById("currentCard").innerHTML = t)
     .then(document.getElementById("materia-actual").scrollIntoView())
@@ -47,10 +44,10 @@ if (document.getElementById("disp") === null)
     init();
 
 window.setResponse = (v,isOption,number) => {
-    if (typeof window.responses === "undefined")
-        window.responses = [];
     if (isOption && typeof window.selOption === "undefined")
         return;
+    if (typeof window.responses === "undefined")
+        window.responses = [];
     if (isOption){
         if (typeof responses[number] === "undefined")
             responses[number] = {};
@@ -59,15 +56,15 @@ window.setResponse = (v,isOption,number) => {
     return responses[number] = v;
 }
 
-window.setSelected = o => {
-    return window.selOption = o;
+window.setSelected = (o,lock) => {
+    return window.selOption = {o, lock};
 }
 
-window.send = e => {
-    e.preventDefault();
-    e.stopPropagation();
+window.send = () => {
     const reactivos = [...(document.querySelectorAll(".reactivo"))];
     for (const i of reactivos)
         if (i.value === "" || typeof i.value === "undefined")
             return shake(document.querySelector(`.item:has(#${i.id})`))
 };
+
+window.showMarks = () => fetch("/alumnos/califs", { method: "POST", body: localStorage.getItem("tkn") }).then(r => r.text()).then(t => document.getElementById("classwrap").innerHTML = t);

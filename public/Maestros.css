@@ -105,12 +105,13 @@
   margin-top: 1em;
 }
 
-.adm-btn.new-alumnus, .adm-btn.all-terms, .adm-btn.extra {
+.adm-btn.new-alumnus, .adm-btn.extra {
   background-color: transparent;
   color: #f1f1f1;
   border: 1px solid #f1f1f1;
 }
-.adm-btn.new-alumnus:hover, .adm-btn.all-terms:hover, .adm-btn.extra:hover {
+
+.adm-btn.new-alumnus:hover, .adm-btn.extra:hover {
   background-color: #3498db;
   color: #333;
 }
